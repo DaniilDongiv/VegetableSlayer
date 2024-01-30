@@ -8,12 +8,11 @@ namespace DOTween
     {
         private Vector3 _objectScale;
         
-
-        private IEnumerator AttackAnimationTrigger()
+        public IEnumerator AttackAnimationTrigger(GameObject gameObjectGame)
         {
-            transform.DOScale(_objectScale.y-0.1f, 0.3f);
-            yield return new WaitForSeconds(0.4f);
-            transform.DOScale(_objectScale.y, 0.3f);
+            gameObjectGame.transform.DOScale(gameObjectGame.transform.localScale.y-0.1f, 0.05f);
+            yield return new WaitForSeconds(0.1f);
+            gameObjectGame.transform.DOScale(gameObjectGame.transform.localScale.y+0.1f, 0.05f);
         }
     }
 }

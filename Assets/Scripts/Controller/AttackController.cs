@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using DOTween;
 using UnityEngine;
 
 namespace Controller
@@ -12,6 +14,7 @@ namespace Controller
         [SerializeField] 
         private LayerMask _layers;
 
+        private DOTweenController _doTweenController;
         private readonly float _standardDamageValue = 5;
         private readonly float _elevatedDamageValue = 10f;
         private float _damageValue = 5;
@@ -24,6 +27,10 @@ namespace Controller
             {
                 if (hitCollider.gameObject.TryGetComponent(out HealthController player))
                 {
+                    _doTweenController = FindObjectOfType<DOTweenController>();
+                    var a = _doTweenController.AttackAnimationTrigger(hitCollider.gameObject);
+                    StartCoroutine(a);
+                    Debug.Log(_doTweenController.gameObject.name);
                     player.TakeDamage(_damageValue);
                 }
             }
