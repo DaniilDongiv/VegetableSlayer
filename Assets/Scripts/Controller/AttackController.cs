@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using DOTween;
 using UnityEngine;
@@ -28,9 +27,7 @@ namespace Controller
                 if (hitCollider.gameObject.TryGetComponent(out HealthController player))
                 {
                     _doTweenController = FindObjectOfType<DOTweenController>();
-                    var a = _doTweenController.AttackAnimationTrigger(hitCollider.gameObject);
-                    StartCoroutine(a);
-                    Debug.Log(_doTweenController.gameObject.name);
+                    StartCoroutine(_doTweenController.AttackAnimationTrigger(hitCollider.gameObject));
                     player.TakeDamage(_damageValue);
                 }
             }
@@ -39,6 +36,7 @@ namespace Controller
         public void StartCoroutineIncreasedDamage()
         {
             StartCoroutine(IncreasedDamage());
+            //TODO: сменить
         }
         
         private IEnumerator IncreasedDamage()
@@ -46,6 +44,7 @@ namespace Controller
             _damageValue = _elevatedDamageValue;
             yield return new WaitForSeconds(10f);
             _damageValue = _standardDamageValue;
+            //TODO: поменять
         }
     }
 }

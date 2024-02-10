@@ -19,6 +19,7 @@ namespace Events
         {
             if (Input.GetMouseButton(0))
             {
+                //TODO: поменять
                 Time.timeScale = 1;
                 _clickBeginGame.enabled = false;
                 Destroy(this);

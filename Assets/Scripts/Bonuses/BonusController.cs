@@ -41,6 +41,7 @@ namespace Bonuses
                 "ЗАМЕДЛИЛСЯ ИГРОК",
                 "+-ЗДОРОВЬЕ"
             };
+            //TODO: поменять
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -55,7 +56,7 @@ namespace Bonuses
 
         private void PlayerDamageIncrease()
         {
-            _player.GetComponentInChildren<AttackController>().StartCoroutineIncreasedDamage();
+            _player.GetComponentInChildren<AttackController>().StartCoroutineIncreasedDamage();//TODO: создать другой класс
         }
         
         private void ReducingTimerTime()

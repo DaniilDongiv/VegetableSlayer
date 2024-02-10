@@ -28,6 +28,7 @@ namespace Systems
                 }
                 _gameTime = 0;
             }
+            //TODO: Поменять UPDATE
         }
 
         public float GetRemainsTime()

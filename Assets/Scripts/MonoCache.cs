@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonoCache : MonoBehaviour
+public abstract class MonoCache : MonoBehaviour
 {
     public static List<MonoCache> AllUpdate = new List<MonoCache>(10001);
 

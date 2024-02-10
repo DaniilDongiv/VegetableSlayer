@@ -39,6 +39,7 @@ namespace Enemy
                 _isAttake = true;
                 _navMeshAgent.speed = 0f;
                 _animator.SetBool(Attack, true);
+                //TODO: поменять 
             }
         }
 

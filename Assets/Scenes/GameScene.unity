@@ -2173,6 +2173,8 @@ GameObject:
   - component: {fileID: 911968077}
   - component: {fileID: 911968076}
   - component: {fileID: 911968075}
+  - component: {fileID: 911968084}
+  - component: {fileID: 911968085}
   - component: {fileID: 911968081}
   - component: {fileID: 911968082}
   - component: {fileID: 911968083}
@@ -2210,7 +2212,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _joystick: {fileID: 1831947119}
 --- !u!54 &911968076
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2365,6 +2366,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7a0026788bccab498fcfe825c23fd63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &911968084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911968074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e549a5dee1227458d9c7c70ee00ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _joystick: {fileID: 1831947119}
+--- !u!114 &911968085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911968074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6cea5b3a7772c64dbfe6a118984d706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &961432234
@@ -4996,7 +5022,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6087771358165109452, guid: 640fc0a287b2a3a45b17ff0a09afdf45, type: 3}
+  - {fileID: 2100000, guid: be70a7860177dbd4b8f2df98485c2802, type: 2}
   - {fileID: -6922793697723135513, guid: 640fc0a287b2a3a45b17ff0a09afdf45, type: 3}
   - {fileID: 2100000, guid: cb0b79b738977bb41b7769d62d4b9780, type: 2}
   - {fileID: -4246479402191905792, guid: 640fc0a287b2a3a45b17ff0a09afdf45, type: 3}
@@ -5626,7 +5652,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 637949407474519127, guid: 640fc0a287b2a3a45b17ff0a09afdf45, type: 3}
+  - {fileID: 2100000, guid: b55dfcf49bbd35c4e9be33425fc9d9fe, type: 2}
   - {fileID: -6922793697723135513, guid: 640fc0a287b2a3a45b17ff0a09afdf45, type: 3}
   - {fileID: 2100000, guid: b55dfcf49bbd35c4e9be33425fc9d9fe, type: 2}
   - {fileID: 2100000, guid: a8a10cad226fa4b4e82a64cf49e467b5, type: 2}

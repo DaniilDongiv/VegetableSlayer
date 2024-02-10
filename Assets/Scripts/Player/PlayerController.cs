@@ -1,43 +1,43 @@
 using System.Collections;
+using Controller;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class PlayerController : MonoCache
+    public class PlayerController : MonoCache, IMoveController, IAttackController
     {
         public UnityEvent<Transform> PlayerSpawner;
-        public static bool IsAttack = true;
-
-        [SerializeField] private FixedJoystick _joystick;
-
-        private bool _isJump;
+        
         private int _speed = 5;
         private int _speedSlowingDown = 3;
         private int _standardSpeed = 5;
+        
         private Rigidbody _rigidbody;
-        private Animator _animator;
+        private PlayerAnimationController _animationController;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _animator = GetComponentInChildren<Animator>();
             PlayerSpawner?.Invoke(transform);
+            _animationController = GetComponent<PlayerAnimationController>();
         }
 
         public override void OnTick()
         {
-            MovePhone();
+            
             if (Input.GetKeyDown(KeyCode.K))
             {
-                AttackTrigger();
+                _animationController.AttackAnimation();
             }
+            //TODO: в другой коасс
         }
         
         public void StartCoroutineSlowingDownSpeed()
         {
             StartCoroutine(SlowingDownSpeedCoroutine());
+            //TODO: поменять
         }
         
         private IEnumerator SlowingDownSpeedCoroutine()
@@ -45,29 +45,35 @@ namespace Player
             _speed = _speedSlowingDown;
             yield return new WaitForSeconds(10f);
             _speed = _standardSpeed;
+            //TODO: поменять 
         }
 
         private void AttackTrigger()
         {
-            if (IsAttack)
-            {
-                IsAttack = false;
-                _animator.SetTrigger("Attack");
-            }
+            //TODO: поменять
         }
-        
-        private void MovePhone()
+
+        public void Move(Vector2 inputs)
         {
-            _rigidbody.velocity = new Vector3(_joystick.Horizontal * _speed, _rigidbody.velocity.y,
-                _joystick.Vertical * _speed);
-            if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
+            _rigidbody.velocity = new Vector3(inputs.y * _speed, _rigidbody.velocity.y,inputs.x * _speed);
+            
+            if (inputs.y != 0 || inputs.x != 0)
             {
                 transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
-                _animator.SetBool("Walk", true);
-
+                _animationController.MoveAnimation(true);
             }
             else 
-                _animator.SetBool("Walk", false);
+                _animationController.MoveAnimation(false);
+        }
+        
+        public void Attack(bool isAttack)
+        {
+            if (isAttack)
+            {
+                isAttack = false;
+                //TODO: Так же посмотреть код выше
+                _animationController.AttackAnimation();
+            }
         }
     }
 }
