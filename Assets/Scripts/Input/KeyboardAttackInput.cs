@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyboardAttackInput : MonoCache
 {
-    private IMoveController _playerController;
+    private IAttackController _playerController;
         
     private void Start()
     {
@@ -13,6 +13,6 @@ public class KeyboardAttackInput : MonoCache
 
     public override void OnTick()
     {
-        
+        _playerController.Attack(Input.GetKeyDown(KeyCode.K));
     }
 }

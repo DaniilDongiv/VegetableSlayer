@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Controller
 {
@@ -14,19 +12,8 @@ namespace Controller
 
         private void Awake()
         {
-            ChangePosition();
+            _player.transform.position = _pointsSpawn[RandomNumberGenerator.RandomNumber(0,_pointsSpawn.Length,false)].position;
             Destroy(this);
-        }
-
-        private void ChangePosition()
-        {
-            _player.transform.position = _pointsSpawn[RandomNumberPointSpawnEnemy()].position;
-        }
-        
-        private int RandomNumberPointSpawnEnemy()
-        {
-            var numberPointRandom = Random.Range(0, _pointsSpawn.Length);
-            return numberPointRandom;
         }
     }
 }

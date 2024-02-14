@@ -13,7 +13,6 @@ namespace DOTween
             gameObjectGame.transform.DOScale(localScale.y-0.1f, 0.01f);
             yield return new WaitForSeconds(0.1f);
             gameObjectGame.transform.DOScale(localScale.y, 0.01f);
-            //TODO: Поменять в какой-то класс
         }
     }
 }

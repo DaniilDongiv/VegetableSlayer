@@ -1,7 +1,6 @@
 using Enemy;
 using UnityEngine;
 using UnityEngine.Events;
-using Random = UnityEngine.Random;
 
 namespace Controller
 {
@@ -30,6 +29,7 @@ namespace Controller
             if (_currentTime <= 0)
             {
                 SpawnEnemy();
+                
                 if (_time>=4)
                 {
                     _time -= 1;
@@ -40,35 +40,22 @@ namespace Controller
 
         private void SpawnEnemy()
         {
-            var enemy =Instantiate(_prefabsEnemy[RandomNumberPrefabEnemy()]);
+            var enemy =Instantiate(_prefabsEnemy[RandomNumberGenerator.RandomNumber(0, _prefabsEnemy.Length,false)]);
             enemy.transform.position = _pointsSpawnEnemy[NumberPointZoneSpawn()].position;
             EnemySpawner.Invoke(enemy.transform);
         }
         
-        private int RandomNumberPrefabEnemy()
-        {
-            return Random.Range(0, _prefabsEnemy.Length);
-        }
-
         private int NumberPointZoneSpawn()
         {
-            var number = RandomNumberPointSpawnEnemy();
+            var number = RandomNumberGenerator.RandomNumber(0, _pointsSpawnEnemy.Length,false);
             var isMaySpawn = _pointsSpawnEnemy[number].GetComponent<PointSpawnController>().ChecksObjectsZoneSpawn();
             while (isMaySpawn)
             {
-                number = RandomNumberPointSpawnEnemy();
+                number = RandomNumberGenerator.RandomNumber(0, _pointsSpawnEnemy.Length,false);
                 isMaySpawn = _pointsSpawnEnemy[number].GetComponent<PointSpawnController>().ChecksObjectsZoneSpawn();
             }
 
             return number;
         }
-        
-        private int RandomNumberPointSpawnEnemy()
-        {
-            var numberPointRandom = Random.Range(0, _pointsSpawnEnemy.Length);
-            return numberPointRandom;
-        }
-        
-        
     }
 }

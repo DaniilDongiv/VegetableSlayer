@@ -1,7 +1,7 @@
+using Controller;
 using Systems;
 using UnityEngine;
 using UnityEngine.AI;
-using static TagManager;
 
 namespace Enemy
 {
@@ -12,10 +12,7 @@ namespace Enemy
         private KillSystem _killSystem;
 
         private float _speed;
-        private bool _isAttake;
-
-        private Animator _animator;
-        private static readonly int Attack = Animator.StringToHash("Attack");
+        private EntityAnimationController _animationController;
 
         private void Awake()
         {
@@ -23,33 +20,30 @@ namespace Enemy
             _player = GameObject.Find("Player");
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _speed = _navMeshAgent.speed;
-            _animator = GetComponentInChildren<Animator>();
+            _animationController = GetComponent<EntityAnimationController>();
         }
         
         public override void OnTick()
         {
             transform.LookAt(_player.transform);
-            _navMeshAgent.SetDestination(_player.transform.position);
+            _navMeshAgent?.SetDestination(_player.transform.position);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag(GlobalConstants.PLAYER_TAG))
             {
-                _isAttake = true;
                 _navMeshAgent.speed = 0f;
-                _animator.SetBool(Attack, true);
-                //TODO: поменять 
+                _animationController?.AttackAnimation(true);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag(PLAYER))
+            if (other.gameObject.CompareTag(GlobalConstants.PLAYER_TAG))
             {
-                _isAttake = !_isAttake;
                 _navMeshAgent.speed = _speed;
-                _animator.SetBool(Attack, false);
+                _animationController?.AttackAnimation(false);
             }
         }
         

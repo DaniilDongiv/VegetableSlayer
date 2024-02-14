@@ -1,6 +1,5 @@
 using System;
 using Controller;
-using Player;
 using Systems;
 using UnityEngine;
 using View;
@@ -26,7 +25,6 @@ namespace Bonuses
                 ReducingTimerTime,
                 BoostTimerTime,
                 PlayerDamageIncrease,
-                SlowingDownPlayer,
                 HealthChange
             };
         }
@@ -38,7 +36,6 @@ namespace Bonuses
                 "-ВРЕМЯ",
                 "+ВРЕМЯ",
                 "+УРОН",
-                "ЗАМЕДЛИЛСЯ ИГРОК",
                 "+-ЗДОРОВЬЕ"
             };
             //TODO: поменять
@@ -67,11 +64,6 @@ namespace Bonuses
         private void HealthChange()
         {
             _player.GetComponent<HealthController>().HealthChange(RandomNumberGenerator.RandomNumber(-15,45, true));
-        }
-
-        private void SlowingDownPlayer()
-        {
-            _player.GetComponent<PlayerController>().StartCoroutineSlowingDownSpeed();
         }
 
         private void BoostTimerTime()
