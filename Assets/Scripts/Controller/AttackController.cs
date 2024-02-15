@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using DOTween;
 using UnityEngine;
 
@@ -12,11 +13,9 @@ namespace Controller
         private float _damageZoneRadius = 1;
         [SerializeField] 
         private LayerMask _layers;
-
-        private DOTweenController _doTweenController;
-        private readonly float _standardDamageValue = 5;
-        private readonly float _elevatedDamageValue = 10f;
         private float _damageValue = 5;
+        
+        private DOTweenController _doTweenController;
 
         public void DealDamage()
         {
@@ -33,18 +32,13 @@ namespace Controller
             }
         }
 
-        public void StartCoroutineIncreasedDamage()
+        public async Task ChangingDamage(float temporaryDamage, int time)
         {
-            StartCoroutine(IncreasedDamage());
-            //TODO: сменить
-        }
-        
-        private IEnumerator IncreasedDamage()
-        {
-            _damageValue = _elevatedDamageValue;
-            yield return new WaitForSeconds(10f);
-            _damageValue = _standardDamageValue;
-            //TODO: поменять
+            var damage = _damageValue;
+            
+            _damageValue = temporaryDamage;
+            await Task.Delay(time);
+            _damageValue = damage;
         }
     }
 }

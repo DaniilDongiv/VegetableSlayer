@@ -5,7 +5,8 @@ namespace View
 {
     public class BonusView : MonoBehaviour
     {
-        [SerializeField] private GameObject _bonusValueLabel;
+        [SerializeField]
+        private GameObject _bonusValueLabel;
 
         public void SetBonus(string value)
         {

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace Systems
 {
-    public class TimerSystem : MonoBehaviour
+    public class TimerSystem : MonoCache
     {
         public UnityEvent EndTime;
 
@@ -16,7 +16,7 @@ namespace Systems
             _configGameTimeModel = new ConfigGameTimeModel();
         }
 
-        private void FixedUpdate()
+        public override void OnTick()
         {
             _gameTime += 1 * Time.deltaTime;
             if (_gameTime>=1 && _configGameTimeModel.RemainingTime > 0)
@@ -28,7 +28,6 @@ namespace Systems
                 }
                 _gameTime = 0;
             }
-            //TODO: Поменять UPDATE
         }
 
         public float GetRemainsTime()

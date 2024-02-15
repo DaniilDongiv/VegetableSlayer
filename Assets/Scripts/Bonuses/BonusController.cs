@@ -1,5 +1,6 @@
 using System;
 using Controller;
+using Scriptable_Objects;
 using Systems;
 using UnityEngine;
 using View;
@@ -12,6 +13,8 @@ namespace Bonuses
         private TimerSystem _timerSystem;
         private BonusView _bonusView;
 
+        public ItemSettings _item;
+
         private void Awake()
         {
             _timerSystem = FindObjectOfType<TimerSystem>();
@@ -22,53 +25,38 @@ namespace Bonuses
         {
             return new Action[]
             {
-                ReducingTimerTime,
-                BoostTimerTime,
+                TimerTimeChange,
                 PlayerDamageIncrease,
                 HealthChange
             };
         }
-
-        private string[] GetArrayBonusText()
-        {
-            return new[]
-            {
-                "-ВРЕМЯ",
-                "+ВРЕМЯ",
-                "+УРОН",
-                "+-ЗДОРОВЬЕ"
-            };
-            //TODO: поменять
-        }
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag(GlobalConstants.PLAYER_TAG))
             {
                 var randomNumber = RandomNumberGenerator.RandomNumber(0, GetArrayMethods().Length, false);
                 GetArrayMethods()[randomNumber].Invoke();
-                _bonusView.SetBonus(GetArrayBonusText()[randomNumber]);
+                _bonusView.SetBonus(_item.Name[randomNumber]);
                 Destroy(gameObject);
             }
         }
 
         private void PlayerDamageIncrease()
         {
-            _player.GetComponentInChildren<AttackController>().StartCoroutineIncreasedDamage();//TODO: создать другой класс
-        }
-        
-        private void ReducingTimerTime()
-        {
-            _timerSystem.GetConfigGameTimeModel().RemainingTime -= 10;
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            _player.GetComponentInChildren<AttackController>().ChangingDamage(10,10000);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
         private void HealthChange()
         {
-            _player.GetComponent<HealthController>().HealthChange(RandomNumberGenerator.RandomNumber(-15,45, true));
+            _player.GetComponent<HealthController>().HealthChange(RandomNumberGenerator.RandomNumber(15,45, true));
         }
 
-        private void BoostTimerTime()
+        private void TimerTimeChange()
         {
-            _timerSystem.GetConfigGameTimeModel().RemainingTime += 10;
+            _timerSystem.GetConfigGameTimeModel().RemainingTime += RandomNumberGenerator.RandomNumber(5,10, true);;
         }
     }
 }
