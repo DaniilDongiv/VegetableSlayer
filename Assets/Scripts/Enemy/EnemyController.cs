@@ -1,3 +1,4 @@
+using System;
 using Controller;
 using Systems;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace Enemy
 {
     public class EnemyController : MonoCache
     {
+        public Action<EnemyController> Enemy;
+        
         private GameObject _player;
         private NavMeshAgent _navMeshAgent;
         private KillSystem _killSystem;

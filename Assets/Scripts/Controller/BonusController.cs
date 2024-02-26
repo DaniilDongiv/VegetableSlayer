@@ -9,11 +9,12 @@ namespace Bonuses
 {
     public class BonusController : MonoBehaviour
     {
+        [SerializeField]
+        private ItemSettings _itemSettings;
+        
         private GameObject _player;
         private TimerSystem _timerSystem;
         private BonusView _bonusView;
-
-        public ItemSettings _item;
 
         private void Awake()
         {
@@ -37,7 +38,7 @@ namespace Bonuses
             {
                 var randomNumber = RandomNumberGenerator.RandomNumber(0, GetArrayMethods().Length, false);
                 GetArrayMethods()[randomNumber].Invoke();
-                _bonusView.SetBonus(_item.Name[randomNumber]);
+                _bonusView.SetBonus(_itemSettings.Name[randomNumber]);
                 Destroy(gameObject);
             }
         }

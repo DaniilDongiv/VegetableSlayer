@@ -13,6 +13,14 @@ public class KeyboardAttackInput : MonoCache
 
     public override void OnTick()
     {
-        _playerController.Attack(Input.GetKeyDown(KeyCode.K));
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            _playerController.Attack(true);
+        }
+    }
+
+    public void Attack()
+    {
+        _playerController.Attack(true);
     }
 }

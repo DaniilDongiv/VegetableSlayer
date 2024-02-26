@@ -1,4 +1,5 @@
 using Enemy;
+using Pool;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,8 +18,9 @@ namespace Controller
         private float _currentTime;
 
         private PointSpawnController _pointSpawnController;
+        private MonoBehaviourPool<EnemyController> _enemyPool;
         
-        private void Start()
+        private void Awake()
         {
             _currentTime = 2f;
         }

@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 
 namespace Controller
@@ -8,12 +9,11 @@ namespace Controller
         private Transform[] _pointsSpawn;
 
         [SerializeField]
-        private GameObject _player;
+        private PlayerController _player;
 
         private void Awake()
         {
-            _player.transform.position = _pointsSpawn[RandomNumberGenerator.RandomNumber(0,_pointsSpawn.Length,false)].position;
-            Destroy(this);
+            _player.transform.position = _pointsSpawn[RandomNumberGenerator.RandomNumber(0,_pointsSpawn.Length,true)].position;
         }
     }
 }
