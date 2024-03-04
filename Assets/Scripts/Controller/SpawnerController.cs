@@ -13,7 +13,7 @@ namespace Controller
 
         private void Awake()
         {
-            _player.transform.position = _pointsSpawn[RandomNumberGenerator.RandomNumber(0,_pointsSpawn.Length,true)].position;
+            _player.transform.position = _pointsSpawn[RandomNumberGenerator.RandomNumber(0,_pointsSpawn.Length-1,true)].position;
         }
     }
 }
