@@ -17,7 +17,7 @@ namespace View
         
         public void Update()
         {
-            _killText.text = "KILLS: " + _killSystem.ReturnNumberKills();
+            _killText.text = "SCORE: " + _killSystem.ReturnNumberKills();
         }
     }
 }
